@@ -1,4 +1,7 @@
 package com.vitaliigorovoii.springauthtest.repository;
 
-public class RoleRepository {
+import com.vitaliigorovoii.springauthtest.model.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RoleRepository extends JpaRepository<Role, Long> {
 }
