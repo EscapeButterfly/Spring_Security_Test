@@ -71,6 +71,7 @@ public class UserController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
+        model.addAttribute("users", userService.findAllUsers());
         return "admin";
     }
 }

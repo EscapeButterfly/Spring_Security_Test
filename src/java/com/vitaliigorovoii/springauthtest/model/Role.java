@@ -20,6 +20,7 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
+    @Transient
     private Set<User> users;
 
     public Role() {
@@ -51,10 +52,10 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", users=" + users +
-                '}';
+        if(name.equalsIgnoreCase("ROLE_ADMIN")){
+            return "ADMIN";
+        }else{
+            return "USER";
+        }
     }
 }

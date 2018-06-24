@@ -15,9 +15,11 @@
     <title>Admin</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 </head>
 
 <body>
+
     <div class="container">
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <form id="logoutForm" method="post" action="${contextPath}/logout">
@@ -28,6 +30,37 @@
             </h2>
         </c:if>
     </div>
+
+    <table class="users-table">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+        </tr>
+
+        <c:forEach items="${users}" var="user">
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.roles}</td>
+                <%-- <td><a href="visitors/delete?lname=${guest.lname}"><img src="minus.png"/></a></td> --%>
+            </tr>
+        </c:forEach>
+    </table>
+
+    <%-- <form action = "/visitors" method="post">
+        <p><b>City:</b><br>
+            <select name="city">
+                <c:forEach items="${cities}" var="city">
+                    <option value="${city}">
+                            ${city}
+                    </option>
+                </c:forEach>
+            </select>
+        </p>
+        <button name="filter" type="submit">SUBMIT</button>
+    </form>
+    --%>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

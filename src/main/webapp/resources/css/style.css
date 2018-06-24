@@ -1,0 +1,40 @@
+body {
+    font-family: Verdana, Arial, sans-serif;
+    padding: 50px;
+    color: #555;
+}
+
+h1 {
+    text-align: center;
+    color: #be7429;
+    font-weight: normal;
+    width: 450px;
+}
+
+table {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+th {
+    text-align: center;
+    border-bottom: 1px solid;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+}
+
+a:link {
+    color: #000000;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:link:hover {
+    color: #50be26;
+    font-weight: normal;
+    text-decoration: underline;
+}
