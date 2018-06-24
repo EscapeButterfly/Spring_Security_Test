@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller for {@link User}'s pages.
@@ -73,5 +71,12 @@ public class UserController {
     public String admin(Model model) {
         model.addAttribute("users", userService.findAllUsers());
         return "admin";
+    }
+
+    @RequestMapping(value = "/admin/users/delete", method = RequestMethod.GET)
+    public String delete(@RequestParam(value = "username") String username, Model model){
+        userService.delete(userService.findByUsername(username));
+        model.addAttribute("username", username);
+        return "redirect:/admin";
     }
 }

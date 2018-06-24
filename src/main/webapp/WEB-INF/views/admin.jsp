@@ -36,6 +36,7 @@
             <th>ID</th>
             <th>Username</th>
             <th>Role</th>
+            <th> </th>
         </tr>
 
         <c:forEach items="${users}" var="user">
@@ -43,7 +44,7 @@
                 <td>${user.id}</td>
                 <td>${user.username}</td>
                 <td>${user.roles}</td>
-                <%-- <td><a href="visitors/delete?lname=${guest.lname}"><img src="minus.png"/></a></td> --%>
+                <td><a href="admin/users/delete?username=${user.username}"><img src="../../resources/img/minus.png"/></a></td>
             </tr>
         </c:forEach>
     </table>
