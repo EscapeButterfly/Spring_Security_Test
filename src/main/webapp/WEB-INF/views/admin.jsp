@@ -37,7 +37,7 @@
             <th>ID</th>
             <th>Username</th>
             <th>Role</th>
-            <th> </th>
+            <th>Actions</th>
         </tr>
 
         <c:forEach items="${users}" var="user">

@@ -39,6 +39,10 @@ a:link:hover {
     text-decoration: underline;
 }
 
-.plus{
+.plus {
     padding: 15px 0 !important;
+}
+
+#create-form {
+    display: none;
 }

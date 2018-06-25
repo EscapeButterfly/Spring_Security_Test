@@ -1,6 +1,8 @@
 package com.vitaliigorovoii.springauthtest.controller;
 
+import com.vitaliigorovoii.springauthtest.model.Role;
 import com.vitaliigorovoii.springauthtest.model.User;
+import com.vitaliigorovoii.springauthtest.service.RoleService;
 import com.vitaliigorovoii.springauthtest.service.SecurityService;
 import com.vitaliigorovoii.springauthtest.service.UserService;
 import com.vitaliigorovoii.springauthtest.validator.UserValidator;
@@ -9,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Controller for {@link User}'s pages.
@@ -20,6 +25,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private SecurityService securityService;
@@ -84,6 +92,7 @@ public class UserController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
         model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("roles", roleService.findAllRoles());
         model.addAttribute("userForm", new User());
         return "admin";
     }
@@ -91,7 +100,18 @@ public class UserController {
     @RequestMapping(value = "/admin/users/delete", method = RequestMethod.GET)
     public String delete(@RequestParam(value = "username") String username, Model model){
         userService.delete(userService.findByUsername(username));
-        model.addAttribute("username", username);
+        return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/admin/users/{username}/changerole", method = RequestMethod.GET)
+    public String changeRole(@PathVariable("username") String username,
+                                @RequestParam(value = "rolename") String rolename,
+                                Model model){
+        Set<Role> roleSet = new HashSet<>();
+        roleSet.add(roleService.findRoleByName(rolename));
+        User user = userService.findByUsername(username);
+        user.setRoles(roleSet);
+        userService.update(user);
         return "redirect:/admin";
     }
 }
