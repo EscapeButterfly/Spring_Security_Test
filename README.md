@@ -10,3 +10,5 @@ All users separete by roles (ROLE_USER, ROLE_ADMIN).
 
 In addition we have /admin page which contains table of registred users,
 this page required authentication with ROLE_ADMIN for access and permissions to perform operations with users.
+
+You can use script which contains in [database.sql file](Spring_Training/blob/master/src/main/resources/database.sql) for creating db.
