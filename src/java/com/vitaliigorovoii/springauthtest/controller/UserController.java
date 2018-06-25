@@ -49,6 +49,20 @@ public class UserController {
         return "redirect:/welcome";
     }
 
+    @RequestMapping(value = "/admin/createUser", method = RequestMethod.POST)
+    public String createNewUser(@ModelAttribute("userForm") User userForm,
+                               BindingResult bindingResult, Model model) {
+        userValidator.validate(userForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "admin";
+        }
+
+        userService.save(userForm);
+
+        return "redirect:/admin";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null) {
@@ -70,6 +84,7 @@ public class UserController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
         model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("userForm", new User());
         return "admin";
     }
 
